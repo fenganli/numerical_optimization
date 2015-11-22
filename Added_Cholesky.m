@@ -1,7 +1,9 @@
 function [R, tao] = Added_Cholesky(H)
 %Added_Cholesky algorithm
 % try to chol first
+global numFact
 [R, fail] = chol(H);
+numFact = numFact + 1;
 if fail == 0
     tao = 0;
     return;
@@ -16,6 +18,7 @@ else
 end
 while 1
     [R, fail] = chol(H+tao*eye(size(H,1)));
+    numFact = numFact + 1;
     if fail == 0
         return;
     else
