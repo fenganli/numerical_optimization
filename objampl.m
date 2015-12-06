@@ -8,12 +8,13 @@ function varargout = objampl(x,mode)
 global numf numg numH
 argout = 0;
 
-if bitand(mode,1) 
-  numf = numf + 1;
+%if bitand(mode,1) 
+%  numf = numf + 1;
   argout = argout + 1;
   [f,c] = spamfunc(x,0);
-  varargout(argout) = {f};
-end
+  varargout = {f};
+%end
+%{
 if bitand(mode,2) 
   [g,Jac] = spamfunc(x,1);
   numg = numg + 1;
@@ -29,4 +30,5 @@ if bitand(mode,4)
   argout = argout + 1;
   varargout(argout) = {H};
 end
+%}
 return;
