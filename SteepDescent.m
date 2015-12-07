@@ -12,13 +12,12 @@ for i = 1:max_iter
         inform.status = 1;
         inform.iter = i;
         x.p = point.p;
-        x.f= point.g;
+        x.f= point.f;
         return;
     end
     
-    [alfa, x] = StepSizeSW(func, point, (0-point.g), 1, params);
+    [alfa, x] = StepSize(func, point, (0-point.g), 1, params);
     point.p = point.p - alfa * point.g;
-    
 end
 inform.status = 0;
 inform.iter = max_iter;
