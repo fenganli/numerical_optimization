@@ -42,15 +42,16 @@ for i = 1:max_iter
             for j=1:size(point.p, 1)
                 D(j,j)=1.0/max(0.01, abs(point.h(j,j)));
             end
+            D
             s = -D*point.g;   
         end
     else
-    % use another way
-    [R, tao] = Added_Cholesky(point.h);
-    s=-R\(R'\point.g);
+        % use another way
+        [R, tao] = Added_Cholesky(point.h);
+        s=-R\(R'\point.g);
     end
     
-    [alfa, x] = StepSize(func, point, s, 1, params);
+    [alfa, x] = StepSizeSW(func, point, s, 1, params);
     point.p = point.p + alfa * s;
 end
 inform.status = 0;
