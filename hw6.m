@@ -1,11 +1,14 @@
 global chi
-chi = rand(100, 1)*2-1;
-x=rand(100, 1);
-y = rand(100, 1);
-rho = 1;
+%chi = rand(100, 1)*2-1;
+chi = ones(100, 1);
+%x=rand(100, 1);
+x = ones(100, 1);
+%y = rand(100, 1);
+y = ones(100, 1);
+rho = 10;
 z = 1;
 iters = 1;
-while 1
+while iters
     iters = iters + 1;
     % The function has the close form, thus we solve them directly
     x_new =zeros(100, 1);
@@ -21,9 +24,9 @@ while 1
     for i = 1:100
         y_new(i) = y(i) + rho*(x_new(i)-z_new);
     end
-    x = x_new;
-    y = y_new;
-    z = z_new;
+    x = x_new
+    y = y_new
+    z = z_new
     kkt_norm = 0;
     kkt_norm = norm(x-chi+y) + norm(sum(y)) + norm(x-z);
     if (kkt_norm) < 1e-8
